@@ -54,6 +54,11 @@ target_include_directories(vmix_todoapp
 target_sources(vmix_todoapp
     PRIVATE
         src/main.cpp
+        src/window.cpp
+        src/task_object.cpp
+        src/task_list.cpp
+        src/task_edit.cpp
+
 )
 
 target_link_libraries(vmix_todoapp Qt5::Widgets)

@@ -1,3 +1,8 @@
+//#include "todoapp.h"
+//#include "task_list.h"
+
+#include "window.h"
+
 #include <QApplication>
 #include <QListView>
 
@@ -14,5 +19,10 @@ int main(int argc, char* argv[]) {
   task_service service(
       task_storage_registry::instance().make_storage("sqlite"));
 
+  Window window(service);
+  window.show();
+
+  // TodoApp w(service);
+  // w.show();
   return a.exec();
 }
