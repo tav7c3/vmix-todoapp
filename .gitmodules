@@ -1,0 +1,6 @@
+[submodule "libs/vmix-taskio"]
+	path = libs/vmix-taskio
+	url = https://github.com/tav7c3/vmix-taskio.git
+[submodule "tools/vcpkg"]
+	path = tools/vcpkg
+	url = https://github.com/Microsoft/vcpkg.git
