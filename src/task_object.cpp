@@ -8,6 +8,7 @@ TaskObject::TaskObject(vmix::taskio::task task,
     description("");
     completed(false);
     date(QDateTime::currentDateTime().addDays(1));
+    important(false);
   }
 }
 
@@ -60,6 +61,14 @@ bool TaskObject::completed() const {
 
 void TaskObject::completed(bool c) {
   task_.completed(c);
+}
+
+bool TaskObject::important() const {
+  return task_.important();
+}
+
+void TaskObject::important(bool c) {
+  task_.important(c);
 }
 
 void TaskObject::save() {

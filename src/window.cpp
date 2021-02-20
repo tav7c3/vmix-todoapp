@@ -41,7 +41,7 @@ Window::Window(vmix::taskio::task_service& service, QWidget* parent)
   layout->addWidget(taskEdit, 0, 1, 2, 1);
 
   setLayout(layout);
-  setWindowTitle(QString("TodoApp 0.1.0, taskio %1.%2.%3 [%4.%5.%6]")
+  setWindowTitle(QString("TodoApp 0.2.0, taskio %1.%2.%3 [%4.%5.%6]")
                      .arg(vmix::taskio::version_major())
                      .arg(vmix::taskio::version_minor())
                      .arg(vmix::taskio::version_micro())

@@ -14,16 +14,19 @@ TaskEdit::TaskEdit(QWidget* parent)
   auto descriptionLabel = new QLabel(tr("Описание:"));
   auto timeLabel = new QLabel(tr("Время:"));
   auto completedLabel = new QLabel(tr("Выполнено:"));
+  auto importantLabel = new QLabel(tr("Важное:"));
 
   title = new QLineEdit;
   description = new QTextEdit;
   time = new QDateTimeEdit;
   completed = new QCheckBox;
+  important = new QCheckBox;
 
   connect(title, &QLineEdit::textEdited, this, &TaskEdit::onEdited);
   connect(description, &QTextEdit::textChanged, this, &TaskEdit::onEdited);
   connect(time, &QDateTimeEdit::dateTimeChanged, this, &TaskEdit::onEdited);
   connect(completed, &QCheckBox::stateChanged, this, &TaskEdit::onEdited);
+  connect(important, &QCheckBox::stateChanged, this, &TaskEdit::onEdited);
 
   saveButton = new QPushButton(tr("Сохранить"));
   cancelButton = new QPushButton(tr("Отмена"));
@@ -46,7 +49,9 @@ TaskEdit::TaskEdit(QWidget* parent)
   layout->addWidget(time, 2, 1);
   layout->addWidget(completedLabel, 3, 0);
   layout->addWidget(completed, 3, 1);
-  layout->addLayout(buttonLayout, 4, 1, Qt::AlignCenter);
+  layout->addWidget(importantLabel, 4, 0);
+  layout->addWidget(important, 4, 1);
+  layout->addLayout(buttonLayout, 5, 1, Qt::AlignCenter);
 
   setLayout(layout);
 }
@@ -100,6 +105,10 @@ void TaskEdit::updateView() {
 
     completed->setEnabled(true);
     completed->setChecked(task_->completed());
+
+    important->setEnabled(true);
+    important->setChecked(task_->important());
+
   } else {
     title->clear();
     title->setEnabled(false);
@@ -112,6 +121,9 @@ void TaskEdit::updateView() {
 
     completed->setChecked(false);
     completed->setEnabled(false);
+
+    important->setChecked(false);
+    important->setEnabled(false);
   }
 }
 
@@ -131,5 +143,6 @@ void TaskEdit::updateModel() {
     task_->description(description->toPlainText());
     task_->date(time->dateTime());
     task_->completed(completed->isChecked());
+    task_->important(important->isChecked());
   }
 }

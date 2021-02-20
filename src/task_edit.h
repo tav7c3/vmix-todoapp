@@ -38,6 +38,7 @@ class TaskEdit : public QWidget {
   QTextEdit* description;
   QDateTimeEdit* time;
   QCheckBox* completed;
+  QCheckBox* important;
   QPushButton* saveButton;
   QPushButton* cancelButton;
 
