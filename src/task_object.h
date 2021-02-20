@@ -28,6 +28,9 @@ class TaskObject {
   bool completed() const;
   void completed(bool);
 
+  bool important() const;
+  void important(bool);
+
   void save();
   void remove();
   void fetch();

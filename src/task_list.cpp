@@ -22,16 +22,19 @@ QVariant TaskList::data(const QModelIndex& index, int role) const {
   const auto& task = tasks_.at(index.row());
 
   if (role == Qt::DisplayRole) {
-    return QString("%1 | %2 (%3) %4")
+    return QString("%1 | %2 (%3) %4 %5")
         .arg(index.row() + 1, 3)
         .arg(task.title())
         .arg(task.date().toString())
-        .arg(task.completed() ? "+" : "-");
+        .arg(task.completed() ? "+" : "-")
+        .arg(task.important() ? "^" : "");
   } else if (role == Qt::BackgroundRole) {
     if (task.completed())
       return QBrush(Qt::green);
     if (!task.completed() && QDateTime::currentDateTime() > task.date())
       return QBrush(Qt::red);
+    if (task.important() && !task.completed())
+      return QBrush(Qt::yellow);
   }
 
   return QVariant();
